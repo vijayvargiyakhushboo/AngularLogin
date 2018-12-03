@@ -1,0 +1,49 @@
+<mat-table #table [dataSource]="dataSource" class="mat-elevation-z8">
+
+  <!-- Position Column -->
+  <ng-container matColumnDef="roll_number">
+            <mat-header-cell *matHeaderCellDef>Roll Number</mat-header-cell>
+            <mat-cell *matCellDef="let element ">{{element.id }} 
+            </mat-cell>
+        </ng-container>
+
+  <ng-container matColumnDef="first_name">
+            <mat-header-cell *matHeaderCellDef>Name</mat-header-cell>
+            <mat-cell *matCellDef="let element ">{{element.first_name | titlecase }} 
+            </mat-cell>
+        </ng-container>
+
+  <!-- Name Column -->
+  <ng-container matColumnDef="father_name">
+    <mat-header-cell *matHeaderCellDef> Father Name </mat-header-cell>
+    <mat-cell *matCellDef="let element"> {{element.father_name | titlecase }} </mat-cell>
+  </ng-container>
+
+  <!-- Weight Column -->
+  <ng-container matColumnDef="mother_name">
+    <mat-header-cell  *matHeaderCellDef> Mother Name </mat-header-cell>
+    <mat-cell *matCellDef="let element"> {{element.mother_name | titlecase }} </mat-cell>
+  </ng-container>
+
+  <!-- Symbol Column -->
+  <ng-container matColumnDef="class">
+    <mat-header-cell *matHeaderCellDef> Class </mat-header-cell>
+    <mat-cell *matCellDef="let element"> {{element.class}} </mat-cell>
+  </ng-container>
+
+<ng-container matColumnDef="dob">
+            <mat-header-cell *matHeaderCellDef>DOB</mat-header-cell>
+            <mat-cell *matCellDef="let element ">  {{element.dob | date}} 
+            </mat-cell>
+        </ng-container>
+
+        <ng-container matColumnDef="id">
+            <mat-header-cell *matHeaderCellDef>Action</mat-header-cell>
+            <mat-cell [routerLink]="['/student',element.id]" *matCellDef="let element"><mat-icon  matTooltip="Edit Student" matPrefix class="icon">edit</mat-icon> <mat-icon (click)="openDialog(element)" matTooltip="Delete Student" matPrefix class="icon">delete</mat-icon>  
+            </mat-cell>
+        </ng-container>
+
+  <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+  <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
+</mat-table>
+<router-outlet></router-outlet>
