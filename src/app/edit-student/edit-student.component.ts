@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl,NgForm,Validators} from '@angular/forms';
-import { RestService } from '../rest.service';
+import { ApiService } from '../app.service';
 import { ActivatedRoute } from '@angular/router';
 import { CLASSES } from '../class';
 import { DatePipe } from '@angular/common';
@@ -19,7 +19,7 @@ export class EditStudentComponent implements OnInit {
     editStudentData;
     classData = CLASSES ;
 
-  constructor(public rest: RestService,private route:  ActivatedRoute,private router: Router) { }
+  constructor(public rest: ApiService,private route:  ActivatedRoute,private router: Router) { }
 
   ngOnInit() {
   	this.sub = this.route.params.subscribe(params => {

@@ -16,25 +16,18 @@ import {FormsModule} from "@angular/forms";
 import { LoginComponent } from './login/login.component';
 import { ListStudentComponent,DialogContent } from './list-student/list-student.component';
 import {MatTableModule} from '@angular/material/table';
-import { ReceiptComponent } from './receipt/receipt.component';
-import { ReceiptviewComponent } from './receiptview/receiptview.component';
 import { MatDialogModule } from '@angular/material/dialog';
-
 import { EditStudentComponent } from './edit-student/edit-student.component';
 import {MatExpansionModule} from '@angular/material/expansion';
-
-
-import { BooksComponent } from './books/book.component';
-import { ListBookComponent } from './books/viewBook.component';
-
+import {NeedAuthGuard} from './auth.guard';
 
 //import { MatDatepickerModule }  from "@angular/material/datepicker";
 const appRoutes: Routes =[
 {
 	path: '',
-	redirectTo: '/',
-    pathMatch: 'full'
-    //component: AppComponent
+	
+    //pathMatch: 'full'
+    component: LoginComponent
 },
 {
 	path: 'student',
@@ -42,7 +35,8 @@ const appRoutes: Routes =[
 },
 {
   path: 'login',
-  component: LoginComponent
+  component: LoginComponent,
+  canActivate: [NeedAuthGuard]
 },
 {
   path : 'liststudent',
@@ -51,22 +45,6 @@ const appRoutes: Routes =[
 
 { path: 'student/:id', 
   component: EditStudentComponent 
-},
-{
-  path : 'receipt',
-  component: ReceiptComponent
-},
-{
-  path : 'receiptView',
-  component: ReceiptviewComponent
-},
-{
-  path : 'bookAdd',
-  component: BooksComponent
-},
-{
-  path : 'bookView',
-  component: ListBookComponent
 }
 
 ];
@@ -81,11 +59,7 @@ const appRoutes: Routes =[
     DialogContent,
     EditStudentComponent,
 
-    ReceiptComponent,
-    ReceiptviewComponent,
-    DialogContent,
-    BooksComponent,
-    ListBookComponent
+    DialogContent
 
   ],
   imports: [
@@ -122,7 +96,9 @@ const appRoutes: Routes =[
     MatExpansionModule
 
   ],
-  providers: [],
+  providers: [
+  NeedAuthGuard
+  ],
   bootstrap: [AppComponent],
   entryComponents: [DialogContent]
 })

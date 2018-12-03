@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { RestService} from '../rest.service';
+import { ApiService} from '../app.service';
 import { FormControl,NgForm,Validators } from '@angular/forms';
 import { CLASSES } from '../class';
 import { ActivatedRoute,Router } from '@angular/router';
@@ -14,7 +14,7 @@ export class StudentComponent implements OnInit {
 	studentData: any = {};
 	classData = CLASSES ;
 
-  constructor(public rest:RestService,private route: ActivatedRoute,private router: Router) { 
+  constructor(public rest:ApiService,private route: ActivatedRoute,private router: Router) { 
   	/*this.rest.getClasses().subscribe((response) => {
     console.log("res KV class: ",response);
     this.classData = response;

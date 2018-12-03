@@ -1,5 +1,5 @@
 import { Component, OnInit,Inject } from '@angular/core';
-import { RestService } from '../rest.service';
+import { ApiService } from '../app.service';
 import { MatDialog, MAT_DIALOG_DATA } from '@angular/material';
 import { Router } from '@angular/router';
 
@@ -17,7 +17,7 @@ studentList;
 dataSource ;
 displayedColumns = ['roll_number','first_name','father_name','mother_name','class','dob','id'];
 
-  constructor( public rest: RestService, public dialog: MatDialog) {
+  constructor( public rest: ApiService, public dialog: MatDialog) {
     
   var student = {
   "fn":"selectAll",
@@ -52,7 +52,7 @@ this.rest.getStudents().subscribe((response) => {
   templateUrl: 'delete_dialog.html',
 })
 export class DialogContent {
-  constructor(@Inject(MAT_DIALOG_DATA) public data: DialogData,public rest: RestService,private router: Router) {}
+  constructor(@Inject(MAT_DIALOG_DATA) public data: DialogData,public rest: ApiService,private router: Router) {}
   deleteStudent(id) {
    console.log("delete : "+id);
    let  studentObj = {"fn": "deleteRowById","params": ["students",id]};
